@@ -111,25 +111,6 @@ services:
       - no-new-privileges:true
     restart: always
 
-  whisparr:
-    image: hotio/whisparr:latest
-    container_name: whisparr
-    environment:
-      - PUID=1027 #CHANGE_TO_YOUR_UID
-      - PGID=65536 #CHANGE_TO_YOUR_GID
-      - TZ=Pacific/Auckland #CHANGE_TO_YOUR_TZ
-      - UMASK=022
-      - VERSION=latest
-    volumes:
-      - /volume1/docker/whisparr:/config
-      - /volume1/data:/data
-    ports:
-      - 6969:6969
-    network_mode: synobridge
-    security_opt:
-      - no-new-privileges:true
-    restart: always
-
   plex:
     image: linuxserver/plex:latest
     container_name: plex
@@ -165,30 +146,49 @@ services:
       - no-new-privileges:true
     restart: always
 
-  tdarr:
-    image: ghcr.io/haveagitgat/tdarr:latest
-    container_name: tdarr
-    environment:
-      - PUID=1027
-      - PGID=65536
-      - TZ=Pacific/Auckland
-      - UMASK=022
-      - serverIP=0.0.0.0
-      - serverPort=8266
-      - webUIPort=8265
-      - internalNode=true
-      - inContainer=true
-      - nodeName=InternalNode
-    volumes:
-      - /volume1/docker/tdarr/server:/app/server
-      - /volume1/docker/tdarr/configs:/app/configs
-      - /volume1/docker/tdarr/logs:/app/logs
-      - /volume1/data/media:/media
-      - /volume1/docker/tdarr/transcode_cache:/temp
-    ports:
-      - 8265:8265
-      - 8266:8266
-    network_mode: synobridge
-    security_opt:
-      - no-new-privileges:true
-    restart: always
+#  tdarr:
+#    image: ghcr.io/haveagitgat/tdarr:latest
+#    container_name: tdarr
+#    environment:
+#      - PUID=1027
+#      - PGID=65536
+#      - TZ=Pacific/Auckland
+#      - UMASK=022
+#      - serverIP=0.0.0.0
+#      - serverPort=8266
+#      - webUIPort=8265
+#      - internalNode=true
+#      - inContainer=true
+#      - nodeName=InternalNode
+#    volumes:
+#      - /volume1/docker/tdarr/server:/app/server
+#      - /volume1/docker/tdarr/configs:/app/configs
+#      - /volume1/docker/tdarr/logs:/app/logs
+#      - /volume1/data/media:/media
+#      - /volume1/docker/tdarr/transcode_cache:/temp
+#    ports:
+#      - 8265:8265
+#      - 8266:8266
+#    network_mode: synobridge
+#    security_opt:
+#      - no-new-privileges:true
+#    restart: always
+#
+#  whisparr:
+#    image: hotio/whisparr:latest
+#    container_name: whisparr
+#    environment:
+#      - PUID=1027 #CHANGE_TO_YOUR_UID
+#      - PGID=65536 #CHANGE_TO_YOUR_GID
+#      - TZ=Pacific/Auckland #CHANGE_TO_YOUR_TZ
+#      - UMASK=022
+#      - VERSION=latest
+#    volumes:
+#      - /volume1/docker/whisparr:/config
+#      - /volume1/data:/data
+#    ports:
+#      - 6969:6969
+#    network_mode: synobridge
+#    security_opt:
+#      - no-new-privileges:true
+#    restart: always
